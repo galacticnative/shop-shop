@@ -14,6 +14,10 @@ Git clone the repo to your local hardware. In the command line at the root direc
 
 ## Usage 
 To view and use the app, visit the live webpage at:
+
+### https://lit-retreat-83042.herokuapp.com/
+
+![picture](./shopshop.png)
     
 ## Credits 
 UofA Coding Bootcamp
