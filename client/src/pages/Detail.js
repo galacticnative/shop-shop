@@ -3,15 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import { idbPromise } from "../utils/helpers";
 import Cart from "../components/Cart";
+import { QUERY_PRODUCTS } from "../utils/queries";
+import spinner from '../assets/spinner.gif'
 import { useStoreContext } from "../utils/GlobalState";
+
 import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
   UPDATE_PRODUCTS,
 } from "../utils/actions";
-import { QUERY_PRODUCTS } from "../utils/queries";
-import spinner from '../assets/spinner.gif'
+
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -72,15 +74,15 @@ function Detail() {
       // if product isn't in the cart yet, add it to the current shopping cart in IndexedDB
       idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
     }
-  }
+  };
 
   const removeFromCart = () => {
     dispatch({
       type: REMOVE_FROM_CART,
       _id: currentProduct._id
     });
-  
-    // upon removal from cart, delete the item from IndexedDB using the `currentProduct._id` to locate what to remove
+
+    // delete item from indexDB
     idbPromise('cart', 'delete', { ...currentProduct });
   };
 
